@@ -13,17 +13,17 @@ public interface Mapa {
 
     interface VistaMapa{
         void mostrarColonias(int posicion);
-        void enviarCoordenadas(List<LatLng> coor);
+        void enviarCoordenadas(List<LatLng> coor, String[] info);
     }
 
     interface Presenter{
         void mostrarColonias(int posicion);
-        void enviarCoordenadas(List<LatLng> coor);
+        void enviarCoordenadas(List<LatLng> coor, String[] info);
     }
 
     interface Model{
         void listarColonias(int posicion);
-        void enviarCoordenadas(List<LatLng> coor);
+        void enviarCoordenadas(List<LatLng> coor, String[] info);
     }
 
 }

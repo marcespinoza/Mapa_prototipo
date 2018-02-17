@@ -33,7 +33,7 @@ public class MapaPresenter implements Mapa.Presenter{
     }
 
     @Override
-    public void enviarCoordenadas(List<LatLng> coor) {
-        view.enviarCoordenadas(coor);
+    public void enviarCoordenadas(List<LatLng> coor, String[]info) {
+        view.enviarCoordenadas(coor, info);
     }
 }

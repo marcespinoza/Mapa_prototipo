@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,8 @@ import com.mapa.R;
 public class Marcador extends Fragment {
 
     private String info;
+    private ImageView imagen;
+    private TextView informacion;
 
     @Nullable
     @Override
@@ -27,15 +30,30 @@ public class Marcador extends Fragment {
             @Nullable Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.info_window_form_fragment, container, false);
-        TextView info = view.findViewById(R.id.editTextFormInfoWindow);
-        info.setText(getArguments().getString("info"));
+        informacion = view.findViewById(R.id.editTextFormInfoWindow);
+        imagen = view.findViewById(R.id.roundedImageView);
+        informacion.setText(getArguments().getString("info"));
+        asignarImagen(getArguments().getInt("imagen"));
         return view;
     }
 
-    public static Marcador newInstance(String info){
+    void asignarImagen(int id){
+        switch (id){
+            case 0:imagen.setImageResource(R.drawable.poste1);break;
+            case 1:imagen.setImageResource(R.drawable.poste2);break;
+            case 2:imagen.setImageResource(R.drawable.poste3);break;
+            case 3:imagen.setImageResource(R.drawable.poste4);break;
+            case 4:imagen.setImageResource(R.drawable.poste5);break;
+            case 5:imagen.setImageResource(R.drawable.poste6);break;
+
+        }
+    }
+
+    public static Marcador newInstance(String info, int imagen){
         Marcador marcador = new Marcador();
         Bundle args = new Bundle();
         args.putString("info",info);
+        args.putInt("imagen",imagen);
         if(info!=null){
             marcador.info=info;
         }

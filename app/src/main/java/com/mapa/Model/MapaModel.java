@@ -26,7 +26,7 @@ public class MapaModel implements Mapa.Model {
     double pointX2[]={17.06589, 17.06571, 17.06603, 17.06656, 17.06696, 17.06744};
     List<LatLng> points = new ArrayList<LatLng>();
     private Mapa.Presenter presenter;
-    String[] coor_colonias = new String[6];
+    String[] info_colonias = new String[6];
 
     public MapaModel(Mapa.Presenter presenter) {
         this.presenter=presenter;
@@ -38,20 +38,22 @@ public class MapaModel implements Mapa.Model {
         if(posicion==1){
             for (int i = 0 ; i < pointX.length; i++){
                 points.add(new LatLng(pointX[i],pointY[i]));
+                info_colonias = Principal.getContext().getResources().getStringArray(R.array.colonia1);
             };
 
         }else if (posicion==2){
             for (int i = 0 ; i < pointX2.length; i++){
                 points.add(new LatLng(pointX2[i],pointY2[i]));
+                info_colonias = Principal.getContext().getResources().getStringArray(R.array.colonia2);
             };
         }
 
-        enviarCoordenadas(points);
+        enviarCoordenadas(points, info_colonias);
     }
 
     @Override
-    public void enviarCoordenadas(List<LatLng> coor) {
-        presenter.enviarCoordenadas(coor);
+    public void enviarCoordenadas(List<LatLng> coor, String[] info) {
+        presenter.enviarCoordenadas(coor, info);
     }
 
 }

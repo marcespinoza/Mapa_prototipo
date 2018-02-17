@@ -121,13 +121,13 @@ public class Principal  extends AppCompatActivity implements OnMapReadyCallback,
     }
 
     @Override
-    public void enviarCoordenadas(List<LatLng> coor) {
+    public void enviarCoordenadas(List<LatLng> coor, String[] info) {
         info_windows.clear();
         googleMap.clear();
         for (int i = 0; i < coor.size(); i++) {
             Marker marker = googleMap.addMarker(new MarkerOptions().position(coor.get(i)).snippet(String.valueOf(i)));
             InfoWindow.MarkerSpecification markerSpec = new InfoWindow.MarkerSpecification(5, 5);
-            colonia1= new InfoWindow(marker, markerSpec, Marcador.newInstance("prueba"+i));
+            colonia1= new InfoWindow(marker, markerSpec, Marcador.newInstance(info[i],i));
             info_windows.add(i,colonia1);
         }
 
