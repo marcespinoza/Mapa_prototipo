@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Mapa</string>
+    <string name="google_maps_key">AIzaSyCnu2bBo_Mgae2JHRyEwPe3LnDYB7tnOTU</string>
+
+    <string-array name="colonia1">
+        <item>No de Poste: 897546 \nEstatus: Activo \nDireccion: Romero #45</item>
+        <item>No de Poste: 897546 \nEstatus: Warning \nDireccion: Romero #15</item>
+        <item>No de Poste: 897546 \nEstatus: Activo \nDireccion: Romero #25</item>
+        <item>No de Poste: 897546 \nEstatus: Activo \nDireccion: Romero #48</item>
+        <item>No de Poste: 897546 \nEstatus: Activo \nDireccion: Romero #85</item>
+        <item>No de Poste: 897546 \nEstatus: Warning \nDireccion: Romero #55</item>
+    </string-array>
+
+    <string-array name="colonia2">
+        <item>No de Poste: 897546 \nEstatus: Activo \nDireccion: Romero #5</item>
+        <item>No de Poste: 897546 \nEstatus: Warning \nDireccion: Romero #37</item>
+        <item>No de Poste: 897546 \nEstatus: Activo \nDireccion: Romero #58</item>
+        <item>No de Poste: 897546 \nEstatus: Activo \nDireccion: Romero #12</item>
+        <item>No de Poste: 897546 \nEstatus: Warning \nDireccion: Romero #34</item>
+        <item>No de Poste: 897546 \nEstatus: Activo \nDireccion: Romero #82</item>
+    </string-array>
+
+</resources>
+
+
