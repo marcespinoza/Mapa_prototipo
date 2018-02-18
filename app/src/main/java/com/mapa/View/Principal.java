@@ -29,8 +29,7 @@ public class Principal  extends AppCompatActivity implements OnMapReadyCallback,
         GoogleMap.OnMarkerClickListener, Mapa.VistaMapa  {
 
     MaterialSpinner colonias;
-    private InfoWindow colonia1;
-    private InfoWindow colonia2;
+    private InfoWindow colonia;
     private InfoWindowManager infoWindowManager;
     private Mapa.Presenter presenter;
     private static Context context;
@@ -53,7 +52,14 @@ public class Principal  extends AppCompatActivity implements OnMapReadyCallback,
         colonias.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
-                presenter.mostrarColonias(position);
+            //----Carga las colonias 1 o 2--------//
+                if(position==1 || position==2){
+                     presenter.mostrarColonias(position);}
+            //----Si selecciona la opcion "Seleccione colonia", limpia los marcadores y centra el mapa----//
+                else{
+                    googleMap.clear();
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(17.064915,-96.729255),14));
+                }
             }
         });
     }
@@ -63,7 +69,7 @@ public class Principal  extends AppCompatActivity implements OnMapReadyCallback,
         this.googleMap=googleMap;
         googleMap.getUiSettings().setZoomControlsEnabled(true);
         googleMap.setOnMarkerClickListener(this);
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(17.064915,-96.729255),13));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(17.064915,-96.729255),14));
     }
 
     @Override
@@ -90,6 +96,7 @@ public class Principal  extends AppCompatActivity implements OnMapReadyCallback,
         return context;
     }
 
+    //----De acuerdo al marcador que se toque, se cargan diferentes informaciones---//
     @Override
     public boolean onMarkerClick(Marker marker) {
         InfoWindow infoWindow = null;
@@ -100,12 +107,6 @@ public class Principal  extends AppCompatActivity implements OnMapReadyCallback,
             case "3":infoWindow = info_windows.get(3); break;
             case "4":infoWindow = info_windows.get(4); break;
             case "5":infoWindow = info_windows.get(5); break;
-            /*case "7":infoWindow = colonia1; break;
-            case "8":infoWindow = colonia1; break;
-            case "9":infoWindow = colonia1; break;
-            case "10":infoWindow = colonia1; break;
-            case "11":infoWindow = colonia1; break;
-            case "12":infoWindow = colonia1; break;*/
         }
 
         if (infoWindow != null) {
@@ -116,20 +117,19 @@ public class Principal  extends AppCompatActivity implements OnMapReadyCallback,
     }
 
 
-    @Override
-    public void mostrarColonias(int posicion) {
-    }
-
+    //-----Recibe las coordenadas de la colonia1 o colonia2----//
     @Override
     public void enviarCoordenadas(List<LatLng> coor, String[] info) {
+        //----Limpio la lista de informacion de la colonia cargada anteriormente---//
         info_windows.clear();
+        //------Limpio todos los marcadores de la colonia que estaba cargada---//
         googleMap.clear();
         for (int i = 0; i < coor.size(); i++) {
             Marker marker = googleMap.addMarker(new MarkerOptions().position(coor.get(i)).snippet(String.valueOf(i)));
             InfoWindow.MarkerSpecification markerSpec = new InfoWindow.MarkerSpecification(5, 5);
-            colonia1= new InfoWindow(marker, markerSpec, Marcador.newInstance(info[i],i));
-            info_windows.add(i,colonia1);
+            colonia= new InfoWindow(marker, markerSpec, Marcador.newInstance(info[i],i));
+            info_windows.add(i,colonia);
         }
-
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coor.get(3),18));
     }
 }

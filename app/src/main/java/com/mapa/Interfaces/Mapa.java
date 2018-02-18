@@ -12,7 +12,6 @@ import java.util.List;
 public interface Mapa {
 
     interface VistaMapa{
-        void mostrarColonias(int posicion);
         void enviarCoordenadas(List<LatLng> coor, String[] info);
     }
 
