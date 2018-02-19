@@ -13,6 +13,7 @@ import com.appolica.interactiveinfowindow.fragment.MapInfoWindowFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -120,13 +121,17 @@ public class Principal  extends AppCompatActivity implements OnMapReadyCallback,
     //-----Recibe las coordenadas de la colonia1 o colonia2----//
     @Override
     public void enviarCoordenadas(List<LatLng> coor, String[] info) {
+        Marker marker;
         //----Limpio la lista de informacion de la colonia cargada anteriormente---//
         info_windows.clear();
         //------Limpio todos los marcadores de la colonia que estaba cargada---//
         googleMap.clear();
         for (int i = 0; i < coor.size(); i++) {
-            Marker marker = googleMap.addMarker(new MarkerOptions().position(coor.get(i)).snippet(String.valueOf(i)));
+            marker = googleMap.addMarker(new MarkerOptions().position(coor.get(i)).snippet(String.valueOf(i)));
             InfoWindow.MarkerSpecification markerSpec = new InfoWindow.MarkerSpecification(5, 5);
+            /*if(info[i].indexOf("Warning")!=-1){
+                marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker_amarillo));
+            }*/
             colonia= new InfoWindow(marker, markerSpec, Marcador.newInstance(info[i],i));
             info_windows.add(i,colonia);
         }
